@@ -477,16 +477,7 @@ E utilizar:
 
 # 🎥 Demonstração
 
-Adicionar aqui um vídeo ou GIF demonstrando:
-
-1.  execução dos testes;
-    
-2.  resultado no Maven;
-    
-3.  execução da pipeline;
-    
-4.  relatório Allure.
-    
+<!-- Failed to upload "demo-execution.mp4" -->
 
 ----------
 
