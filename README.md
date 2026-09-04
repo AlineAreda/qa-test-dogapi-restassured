@@ -1,39 +1,39 @@
-<div align="center">
-
-<img src="assets/dog-api-logo.png" alt="Dog API" width="180">
-
 # 🐶 Dog API — Automação de Testes de API
 
-Projeto de automação de testes de API desenvolvido em **Java**, utilizando **RestAssured** e **JUnit 5**, com gerenciamento de configurações através do **Owner** e geração de relatórios com **Allure**.
-
-</div>
+Projeto de automação de testes de API desenvolvido em **Java**, utilizando **RestAssured** e **JUnit 5**, com gerenciamento de configurações através do **Owner**, geração de relatórios com **Allure** e execução automatizada através do **GitHub Actions**.
 
 ----------
 
 ## 📌 Sobre o projeto
 
-Este projeto foi desenvolvido com o objetivo de automatizar e validar os principais endpoints da **Dog API**, avaliando diferentes cenários funcionais e o contrato das respostas retornadas pela API.
+Este projeto foi desenvolvido para automatizar e validar os endpoints listados abaixo da **Dog API**, avaliando diferentes cenários funcionais, estrutura dos dados e contrato das respostas retornadas pela API.
 
-A estratégia de testes contempla:
+A estratégia considera **cobertura, relevância e manutenção**, evitando a criação de testes apenas para aumentar a quantidade de casos automatizados.
+
+### Cobertura
 
 -   validação de códigos HTTP;
-
+    
 -   validação do formato das respostas;
-
+    
 -   validação do conteúdo JSON;
-
+    
 -   validação da estrutura dos dados;
-
+    
 -   cenários positivos;
-
+    
 -   cenário negativo;
-
+    
 -   testes parametrizados;
-
+    
 -   validação de comportamento;
-
--   geração de relatório de execução com Allure.
-
+    
+-   geração de relatório com Allure;
+    
+-   execução automatizada com GitHub Actions;
+    
+-   disponibilização dos resultados como artefatos da pipeline.
+    
 
 ----------
 
@@ -43,19 +43,19 @@ Endpoint
 
 Método
 
-Cenários principais
+Principais cenários
 
 `/api/breeds/list/all`
 
 `GET`
 
-Lista de raças, estrutura das raças e sub-raças
+Lista de raças, estrutura, sub-raças e raças conhecidas
 
 `/api/breed/{breed}/images`
 
 `GET`
 
-Imagens de raças válidas, formato das imagens e raça inexistente
+Imagens de raças válidas, formato, parametrização e raça inexistente
 
 `/api/breeds/image/random`
 
@@ -65,104 +65,91 @@ Imagem aleatória, formato da URL e comportamento aleatório
 
 ----------
 
-## 🏗️ Arquitetura do projeto
+## 🏗️ Arquitetura
 
 ```
 ceo-dog-api
-│
+├── .github
+│   └── workflows
+│       └── api-tests.yml
 ├── src
 │   └── test
 │       ├── java
-│       │   └── com.ceodog.api
-│       │       │
-│       │       ├── config
-│       │       │   ├── BaseTest.java
-│       │       │   └── Configuracoes.java
-│       │       │
-│       │       ├── specs
-│       │       │   └── ResponseSpecs.java
-│       │       │
-│       │       └── tests
-│       │           ├── BreedsListTest.java
-│       │           ├── BreedImagesTest.java
-│       │           └── RandomImageTest.java
-│       │
+│       │   └── com
+│       │       └── ceodog
+│       │           └── api
+│       │               ├── config
+│       │               │   ├── BaseTest.java
+│       │               │   └── Configuracoes.java
+│       │               ├── specs
+│       │               │   └── ResponseSpecs.java
+│       │               └── tests
+│       │                   ├── BreedsListTest.java
+│       │                   ├── BreedImagesTest.java
+│       │                   └── RandomImageTest.java
 │       └── resources
 │           └── properties
 │               └── hml.properties
-│
-├── assets
-│   ├── dog-api-logo.png
-│   └── reports
-│
 ├── .gitignore
 ├── pom.xml
 └── README.md
 ```
 
-### 📂 Organização
-
-`**config**`
+### `config`
 
 Responsável pela configuração base dos testes.
 
--   `BaseTest.java` centraliza a configuração do RestAssured, incluindo URL, porta e caminho base.
+`BaseTest.java` centraliza URL base, porta e path base do RestAssured.
 
--   `Configuracoes.java` utiliza o Owner para leitura das configurações do ambiente.
+`Configuracoes.java` utiliza o **Owner** para leitura das configurações do ambiente.
 
+### `specs`
 
-`**specs**`
+`ResponseSpecs.java` centraliza validações comuns das respostas de sucesso, evitando repetição nos testes.
 
-Contém especificações de resposta reutilizáveis.
+### `tests`
 
--   `ResponseSpecs.java` centraliza as validações comuns de respostas de sucesso, como `HTTP 200` e `Content-Type JSON`.
+Contém as suítes organizadas por endpoint:
 
+-   `BreedsListTest.java`
+    
+-   `BreedImagesTest.java`
+    
+-   `RandomImageTest.java`
+    
 
-`**tests**`
+### `.github/workflows`
 
-Contém as suítes de testes organizadas de acordo com os endpoints avaliados.
+`api-tests.yml` contém a pipeline de CI/CD responsável pela execução dos testes e geração dos relatórios.
 
 ----------
 
-## 🧰 Tecnologias e dependências
+## 🧰 Tecnologias
 
-### Principais
+-   Java 17
+    
+-   Maven
+    
+-   JUnit Jupiter 5.9.3
+    
+-   RestAssured 5.4.0
+    
+-   Owner 1.0.12
+    
+-   Allure JUnit 5 2.13.8
+    
+-   Allure Maven 2.10.0
+    
+-   GitHub Actions
+    
 
--   **Java 17**
-
--   **Maven**
-
--   **JUnit Jupiter 5.9.3**
-
--   **RestAssured 5.4.0**
-
--   **Owner 1.0.12**
-
--   **Allure JUnit 5 2.13.8**
-
--   **Allure Maven 2.10.0**
-
-
-### Dependências adicionais configuradas
-
-O projeto também possui:
-
--   `json-schema-validator` — suporte à validação de JSON Schema;
-
--   `slf4j-simple` — implementação simples de logging;
-
--   `Jackson Databind` — suporte à serialização/desserialização JSON;
-
--   `Lombok` — redução de código boilerplate.
-
-
-Essas dependências estão disponíveis no projeto para suportar possíveis evoluções da automação, embora nem todas sejam necessárias para os cenários atualmente implementados.
+Também estão disponíveis dependências para JSON Schema, Jackson, Lombok e logging, permitindo futuras evoluções do projeto.
 
 ----------
 
 ## ⚙️ Configuração
 
-As configurações do ambiente estão em:
+Arquivo:
 
 ```
 src/test/resources/properties/hml.properties
@@ -177,34 +164,33 @@ port=443
 maxTimeout=90000
 ```
 
-O carregamento das propriedades é realizado pelo **Owner**, e a configuração do RestAssured é centralizada no `BaseTest`.
-
 ----------
 
-## ▶️ Execução dos testes
+# ▶️ Execução
 
-### Pré-requisitos
+## Pré-requisitos
 
-Para executar o projeto, é necessário ter instalado:
+-   Java 17 ou superior
+    
+-   Maven 3.8 ou superior
+    
+-   acesso à internet
+    
 
--   **Java 17 ou superior**
+## Clonar
 
--   **Maven 3.8 ou superior**
+```
+git clone <URL_DO_REPOSITORIO>
+cd ceo-dog-api
+```
 
--   acesso à internet para comunicação com a Dog API
-
-
-### Executar todos os testes
-
-Na raiz do projeto:
+## Executar todos os testes
 
 ```
 mvn clean test
 ```
 
-Esse comando limpa os resultados anteriores e executa todas as classes de teste encontradas pelo Maven.
-
-### Executar sem limpar os resultados anteriores
+## Executar sem limpar resultados anteriores
 
 ```
 mvn test
@@ -212,53 +198,79 @@ mvn test
 
 ----------
 
-## 📊 Relatório de testes
+# 📊 Allure
 
-O projeto utiliza **Allure** para geração de um relatório visual da execução dos testes.
-
-Após executar:
+Após a execução:
 
 ```
 mvn clean test
 ```
 
-os resultados são armazenados em:
+os resultados ficam em:
 
 ```
 target/allure-results
 ```
 
-Para abrir o relatório:
+Para abrir o relatório localmente:
 
 ```
 mvn allure:serve
 ```
 
-### Resultado da execução
-
-> 📸 **Adicionar aqui o screenshot do relatório Allure.**
-
-Quando o arquivo estiver salvo em:
-
-```
-assets/reports/allure-report.png
-```
-
-utilize:
-
-```
-![Relatório Allure](assets/reports/allure-report.png)
-```
+O relatório permite analisar testes aprovados, falhos, ignorados, duração, descrições, severidade e funcionalidades.
 
 ----------
 
-## 🎥 Demonstração da execução
+# 🔄 GitHub Actions — CI/CD
 
-Abaixo será disponibilizado um vídeo demonstrando a execução da suíte de testes e a geração dos resultados.
+O projeto possui pipeline de Integração Contínua configurada em:
 
-> 🎬 **Adicionar aqui o vídeo ou GIF da execução.**
+```
+.github/workflows/api-tests.yml
+```
 
-Para uma demonstração diretamente no GitHub, pode ser utilizado um GIF curto ou um vídeo anexado ao repositório.
+A pipeline automatiza a execução dos testes e a geração dos relatórios.
+
+## 🚦 Triggers
+
+-   `push` na `main`;
+    
+-   Pull Request direcionado para `main`;
+    
+-   execução manual através de `workflow_dispatch`.
+    
+
+### Execução manual
+
+No GitHub:
+
+```
+Actions
+  ↓
+API Tests
+  ↓
+Run workflow
+  ↓
+Selecionar branch
+  ↓
+Run workflow
+```
+
+
+
+## 📦 Artefatos
+
+São disponibilizados:
+
+```
+allure-results
+allure-report
+```
+
+Os artefatos ficam disponíveis na execução do workflow por 30 dias.
+
+As etapas de relatório utilizam `if: always()`, permitindo preservar evidências mesmo quando algum teste falha.
 
 ----------
 
@@ -268,24 +280,26 @@ Para uma demonstração diretamente no GitHub, pode ser utilizado um GIF curto o
 
 ### `GET /api/breeds/list/all`
 
-São realizados testes para verificar:
+Valida:
 
--   retorno com sucesso;
-
--   status HTTP esperado;
-
+-   HTTP 200;
+    
 -   conteúdo JSON;
-
--   existência de raças;
-
+    
+-   status de sucesso;
+    
+-   lista não vazia;
+    
 -   estrutura das raças;
-
+    
 -   estrutura das sub-raças;
+    
+-   raças conhecidas.
+    
 
--   presença de raças conhecidas.
+O teste estrutural percorre as raças retornadas e verifica a estrutura dos dados.
 
-
-O teste estrutural percorre todas as raças retornadas pela API e verifica se cada raça possui uma estrutura válida.
+Raças sem sub-raças são consideradas válidas quando retornam uma lista vazia.
 
 ----------
 
@@ -293,24 +307,26 @@ O teste estrutural percorre todas as raças retornadas pela API e verifica se ca
 
 ### `GET /api/breed/{breed}/images`
 
-São realizados testes para verificar:
+Valida:
 
--   consulta de uma raça válida;
-
--   retorno de imagens;
-
--   lista de imagens não vazia;
-
--   formato dos dados retornados;
-
--   diferentes raças através de teste parametrizado;
-
--   tratamento de uma raça inexistente.
-
+-   raça válida;
+    
+-   HTTP 200;
+    
+-   lista de imagens;
+    
+-   lista não vazia;
+    
+-   formato das URLs;
+    
+-   diferentes raças através de parametrização;
+    
+-   raça inexistente.
+    
 
 ### Cenário negativo
 
-Para uma raça inexistente, a API retorna:
+Para uma raça inexistente:
 
 ```
 {
@@ -320,18 +336,7 @@ Para uma raça inexistente, a API retorna:
 }
 ```
 
-O teste valida o contrato completo do erro, incluindo:
-
--   HTTP `404`;
-
--   `Content-Type` JSON;
-
--   `status = error`;
-
--   mensagem retornada;
-
--   código `404`.
-
+O teste valida HTTP 404 e o contrato do erro.
 
 ----------
 
@@ -339,105 +344,210 @@ O teste valida o contrato completo do erro, incluindo:
 
 ### `GET /api/breeds/image/random`
 
-São realizados testes para verificar:
+Valida:
 
--   retorno com sucesso;
-
+-   HTTP 200;
+    
+-   status de sucesso;
+    
 -   existência da imagem;
-
+    
 -   formato da URL;
+    
+-   comportamento aleatório.
+    
 
--   utilização de HTTPS;
+### 🧠 Decisão sobre aleatoriedade
 
--   comportamento aleatório através de múltiplas chamadas.
+O teste não exige que duas chamadas consecutivas retornem imagens diferentes, pois isso poderia gerar um teste instável.
 
+São realizadas múltiplas chamadas e verificado se existe mais de um resultado distinto.
 
-### 🧠 Decisão sobre o teste de aleatoriedade
-
-O teste não considera que duas chamadas consecutivas obrigatoriamente precisam retornar imagens diferentes.
-
-Isso poderia gerar um **teste instável (flaky)**, pois é perfeitamente possível que um endpoint aleatório retorne o mesmo resultado duas vezes.
-
-Por isso, são realizadas múltiplas chamadas e verificado se existe mais de um resultado distinto entre elas.
-
-A validação busca evidenciar o comportamento de aleatoriedade sem criar uma regra artificial de que **toda chamada deve obrigatoriamente retornar um valor diferente da anterior**.
+Assim, o teste avalia o comportamento aleatório sem criar uma regra artificial de diferença obrigatória entre chamadas consecutivas.
 
 ----------
 
 # 🎯 Estratégia de testes
 
-A estratégia foi construída considerando **cobertura e relevância dos cenários**, e não simplesmente a quantidade de testes.
-
-A cobertura contempla:
+A estratégia prioriza **cobertura e relevância**, e não quantidade de testes.
 
 ```
 Cenário positivo
-       ↓
+      ↓
 Contrato da resposta
-       ↓
+      ↓
 Estrutura dos dados
-       ↓
+      ↓
 Parametrização
-       ↓
+      ↓
 Cenário negativo
-       ↓
+      ↓
 Validação comportamental
+      ↓
+Execução local
+      ↓
+CI / Pipeline
+      ↓
+Relatório Allure
 ```
-
-A intenção é garantir que os principais comportamentos dos três endpoints estejam cobertos, mantendo a automação simples e de fácil manutenção.
 
 ----------
 
-## 🧱 Decisões de arquitetura
+# 🧱 Decisões de arquitetura
 
 A arquitetura foi mantida propositalmente enxuta.
 
-O `BaseTest` centraliza as configurações comuns do RestAssured e o `ResponseSpecs` evita a repetição de especificações de resposta.
+O `BaseTest` centraliza configurações comuns do RestAssured e o `ResponseSpecs` evita repetição de especificações de resposta.
 
-Não foi criada uma camada adicional de `Client`, `Models`, `Utils` ou classes específicas de assertions porque, para o escopo atual de apenas três endpoints, isso adicionaria complexidade sem um benefício proporcional.
+Não foi criada uma camada adicional de:
 
-Novas abstrações podem ser introduzidas conforme a automação cresça e surjam necessidades reais de reutilização ou complexidade.
+```
+Client
+Models
+Utils
+Assertions
+```
+
+porque, para o escopo atual de três endpoints, essas abstrações adicionariam complexidade sem benefício proporcional.
+
+A prioridade foi:
+
+-   simplicidade;
+    
+-   legibilidade;
+    
+-   baixo acoplamento;
+    
+-   manutenção;
+    
+-   reutilização apenas quando existe necessidade real.
+    
+
+Novas abstrações podem ser introduzidas conforme a automação cresça.
 
 ----------
 
-## 📁 Estrutura de arquivos gerados
+# 🧹 Versionamento
 
-Os arquivos gerados durante a execução ficam dentro de:
+Arquivos gerados ou específicos do ambiente local não são versionados:
+
+```
+.idea/
+.allure/
+target/
+allure-results/
+allure-report/
+```
+
+A configuração necessária do projeto permanece no `pom.xml` e os resultados de execução podem ser disponibilizados como artefatos da CI.
+
+----------
+
+# 📁 Arquivos gerados
+
+Durante a execução:
 
 ```
 target/
+├── surefire-reports/
+├── allure-results/
+└── site/
+    └── allure-maven-plugin/
 ```
 
-Essa pasta não deve ser versionada no Git.
+A pasta `target/` não deve ser versionada.
 
 ----------
 
-## 🚀 Possíveis evoluções
+# 📸 Resultado da execução
 
-Como próximos passos, o projeto poderia evoluir com:
+Adicionar screenshot do relatório Allure em:
 
--   execução em pipeline CI/CD;
+```
+assets/reports/allure-report.png
+```
 
--   integração com GitHub Actions;
+E utilizar:
+
+```
+![Relatório Allure](assets/reports/allure-report.png)
+```
+
+----------
+
+# 🎥 Demonstração
+
+Adicionar aqui um vídeo ou GIF demonstrando:
+
+1.  execução dos testes;
+    
+2.  resultado no Maven;
+    
+3.  execução da pipeline;
+    
+4.  relatório Allure.
+    
+
+----------
+
+# 🚀 Possíveis evoluções
 
 -   validação através de JSON Schema;
+     
+-   maior cobertura de contrato;
+    
+-   execução paralela;
+   
+-   integração com ferramentas de gestão de testes;
+    
+-   métricas de qualidade;
+    
+-   expansão para novos endpoints.
+    
 
--   configuração de diferentes ambientes;
+Essas evoluções não fazem parte do escopo atual para manter o projeto proporcional ao desafio.
 
--   maior cobertura de cenários de contrato;
+----------
 
--   execução paralela dos testes;
+# 📌 Critérios de qualidade
 
--   publicação automática do relatório Allure.
+### Cobertura
 
+Cenários selecionados considerando os comportamentos mais relevantes.
 
-Essas evoluções não foram adicionadas ao escopo atual para manter o projeto proporcional ao desafio proposto.
+### Manutenibilidade
+
+Abstrações adicionadas somente quando existe necessidade real.
+
+### Legibilidade
+
+Nomes descritivos, `@DisplayName` e `@Description`.
+
+### Reutilização
+
+Especificações comuns centralizadas em `ResponseSpecs`.
+
+### Parametrização
+
+Uso de testes parametrizados para diferentes entradas.
+
+### Cenários negativos
+
+Validação de raça inexistente.
+
+### CI/CD
+
+Execução automatizada através do GitHub Actions.
+
+### Evidências
+
+Resultados disponíveis através do Allure e artefatos da pipeline.
 
 ----------
 
 ## 👩‍💻 Autora
 
-**Aline Oliveira**
+**Aline Areda**
 
 QA | Automação de Testes | Qualidade de Software
 
@@ -446,5 +556,3 @@ QA | Automação de Testes | Qualidade de Software
 <div align="center">
 
 🐶 **Dog API — Projeto de Automação de Testes**
-
-</div>
