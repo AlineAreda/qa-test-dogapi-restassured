@@ -461,23 +461,14 @@ A pasta `target/` não deve ser versionada.
 
 # 📸 Resultado da execução
 
-Adicionar screenshot do relatório Allure em:
+Screenshot do relatório Allure:
 
-```
-assets/reports/allure-report.png
-```
 
-E utilizar:
+<img width="1877" height="840" alt="Image" src="https://github.com/user-attachments/assets/2b7cd47e-7d75-4eab-bc35-d525c0931e3c" />
 
-```
-![Relatório Allure](assets/reports/allure-report.png)
-```
+<img width="1037" height="823" alt="Image" src="https://github.com/user-attachments/assets/ba5c942b-e596-4192-9160-8311e6873da8" />
 
-----------
-
-# 🎥 Demonstração
-
-<!-- Failed to upload "demo-execution.mp4" -->
+<img width="1888" height="791" alt="Image" src="https://github.com/user-attachments/assets/bad901f9-0e2a-4ae7-886b-ebf0568e0f42" />
 
 ----------
 
@@ -543,7 +534,5 @@ Resultados disponíveis através do Allure e artefatos da pipeline.
 QA | Automação de Testes | Qualidade de Software
 
 ----------
-
-<div align="center">
 
 🐶 **Dog API — Projeto de Automação de Testes**
