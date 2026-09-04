@@ -22,6 +22,11 @@ dependency-reduced-pom.xml
 *.iws
 *.iml
 *.ipr
+.idea/encodings.xml
+.idea/misc.xml
+.idea/uiDesigner.xml
+.idea/vcs.xml
+.idea/workspace.xml
 
 ### Eclipse ###
 .apt_generated
