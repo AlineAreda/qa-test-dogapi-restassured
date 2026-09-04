@@ -180,7 +180,7 @@ maxTimeout=90000
 ## Clonar
 
 ```
-git clone (https://github.com/AlineAreda/qa-test-dogapi-restassured.git)
+git clone https://github.com/AlineAreda/qa-test-dogapi-restassured.git
 cd ceo-dog-api
 ```
 
