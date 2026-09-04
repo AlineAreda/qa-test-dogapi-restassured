@@ -468,8 +468,6 @@ Screenshot do relatório Allure:
 
 <img width="1037" height="823" alt="Image" src="https://github.com/user-attachments/assets/ba5c942b-e596-4192-9160-8311e6873da8" />
 
-<img width="1888" height="791" alt="Image" src="https://github.com/user-attachments/assets/bad901f9-0e2a-4ae7-886b-ebf0568e0f42" />
-
 ----------
 
 # 🚀 Possíveis evoluções
